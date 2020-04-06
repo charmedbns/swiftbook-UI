@@ -6,4 +6,8 @@
 //  Copyright © 2020 Alexey. All rights reserved.
 //
 
-import Foundation
+import Combine
+
+final class ChannelData: ObservableObject {
+    @Published var channelName = "Swift Name"
+}

@@ -6,4 +6,9 @@
 //  Copyright © 2020 Alexey. All rights reserved.
 //
 
-import Foundation
+import Combine
+
+final class VideoModel: ObservableObject {
+    @Published var title: String = ""
+    @Published var description: String = ""
+}

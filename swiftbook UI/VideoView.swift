@@ -9,13 +9,27 @@
 import SwiftUI
 
 struct VideoView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode> // <- DISMISS step #1
+    @EnvironmentObject var channelData: ChannelData
+    @Binding var videoTitle: String
+    @Binding var videoDescription: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct VideoView_Previews: PreviewProvider {
-    static var previews: some View {
-        VideoView()
+        NavigationView {
+            VStack(alignment: .leading) {
+                    TextField("Video title", text: self.$videoTitle)
+                    TextField("Video description", text: self.$videoDescription)
+                    Divider()
+                    Button(action: {
+                        print("112")
+                        self.presentationMode.wrappedValue.dismiss() // <- DISMISS step #2
+                    }, label: {
+                        Text("Dismiss this ViewController")
+                    })
+                    Spacer()
+                }
+                .padding()
+                .navigationBarTitle("\(channelData.channelName)")
+        }
     }
 }

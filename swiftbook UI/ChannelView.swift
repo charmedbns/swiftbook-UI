@@ -9,8 +9,24 @@
 import SwiftUI
 
 struct ChannelView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    @EnvironmentObject var channelData: ChannelData
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            VStack(alignment: .leading) {
+                TextField("Channel Name", text: $channelData.channelName)
+                Divider()
+                Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Text("Dismiss this ViewController")
+                })
+                Spacer()
+            }.padding()
+        }
+        .navigationBarTitle("\(channelData.channelName)")
     }
 }
 
